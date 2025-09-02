@@ -5,20 +5,23 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from lda import LDA
 
+# Load the Iris dataset
 data = datasets.load_iris()
 X = data.data
 y = data.target
 
-# Project the data onto the first two linear discriminants
+# Fit LDA and project the data onto the first two linear discriminants
 lda = LDA(n_components=2)
 lda.fit(X, y)
 X_projected = lda.transform(X)
 print(X_projected.shape)
 print("Shape of transformed X", X_projected.shape)
 
+# Extract the two discriminants for plotting
 x1 = X_projected[:, 0]
 x2 = X_projected[:, 1]
 
+# Visualize the projected data
 plt.scatter(
     x1, x2, c=y, edgecolor="none", alpha=0.8, cmap=plt.cm.get_cmap("viridis", 3)
 )

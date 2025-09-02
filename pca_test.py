@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from pca import PCA
 
-# Load dataset
+# Load the Iris dataset
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
 
-# Project the data onto the 2 primary principal components
+# Fit PCA and project the data onto the first two principal components
 pca = PCA(2)
 pca.fit(X)
 X_projected = pca.transform(X)
@@ -18,9 +18,11 @@ X_projected = pca.transform(X)
 print("Original shape:", X.shape)
 print("Projected shape:", X_projected.shape)
 
+# Extract the two principal components for plotting
 x1 = X_projected[:, 0]
 x2 = X_projected[:, 1]
 
+# Visualize the projected data
 plt.scatter(
     x1, x2, c=y, edgecolor="none", alpha=0.8, cmap=plt.cm.get_cmap("viridis", 3)
 )
